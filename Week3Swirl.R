@@ -51,6 +51,42 @@ lapply(unique_vals, function(elem) elem[2])  # uses anonymous function to extrac
 1
 
 
+## Section 11: vapply and tapply
+11
+
+sapply(flags, unique)
+# vapply() allows you to specify what output you want it to simplify to, and it'll return an error if it doesn't work.
+# vapply() is a "safer" alternative to sapply()
+vapply(flags, unique, numeric(1))
+# returns 'Error in vapply(flags, unique, numeric(1)) : values must be length 1, but FUN(X[[1]]) result is length 194'
+ok()
+
+sapply(flags, class)
+vapply(flags, class, character(1))
+# returned same as sapply() because the class of each column is a character vecor of length=1.
+
+?tapply
+# tapply() to split your data into groups based on the value of some variable, then apply a function to each group
+table(flags$landmass) # returns a table of how many countries fall in each landmass
+table(flags$animate)  # returns a table of how many countries have flags with (1) and without (0) an animate object.
+tapply(flags$animate, flags$landmass, mean) # returns a table of the prop of flags with animate objects on each landmass. nifty.
+
+tapply(flags$population, flags$red, summary)
+# Q: What is the median population (in millions) for countries *without* the color red on their flag?
+# A: 3.0
+
+tapply(flags$population, flags$landmass, summary)
+# Q: What is the maximum population (in millions) for the fourth landmass group (Africa)?
+# A: 56.00
+
+
+
+
+
+
+
+
+
 
 
 
