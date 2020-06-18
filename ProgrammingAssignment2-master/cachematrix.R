@@ -25,8 +25,8 @@ cacheSolve <- function(x1, ...) {
                 message("getting cached data")
                 return(m1)
         }
-        data <- x1$getmat()
-        m1 <- solve(data, ...)
-        x1$setmean(m1)
+        data1 <- x1$getmat()
+        m1 <- solve(data1, ...)
+        x1$setsolve(m1)
         m1
 }
